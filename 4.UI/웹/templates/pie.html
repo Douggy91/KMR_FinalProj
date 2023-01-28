@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+        <script src="../static/js/PieceLabel.js"></script> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+
+<style>
+    .pieChartCanvas {
+        position: relative;
+        margin-top: 30vh;
+        float: :left;
+    }
+    .legend-div {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding-top : 120px;
+        padding-right: 50px;
+    }
+
+    .legend-div ul li {
+        margin-top: 12px;
+        color: rgb(0, 0, 0);
+    }
+
+    .legend-div ul li span {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+    @font-face {
+            font-family: 'DungGeunMo';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+    }
+</style>
+    </head>
+    <h2 style="font-size: 30; font-family: 'DungGeunMo'; text-align: center;" > 메뉴 별 판매현황 </h2>
+    <body style="padding:30px; background-color: #ffffff">  
+        <div class="chart-div" >
+            <canvas id="pieChartCanvas" style="height:80vh; width:55vw; float: left; font-family: 'DungGeunMo';"></canvas>
+            <div id='legend-div' class="legend-div" style= "height:70vh; width:30vw; margin-top: 10%; font-family: 'DungGeunMo';"></div>
+        </div>
+
+        <script>
+            window.onload = function () {
+                pieChartDraw();
+                document.getElementById('legend-div').innerHTML = window.pieChart.generateLegend();
+                setLegendOnClick();
+            }
+
+            let pieChartData = {
+                labels: {{ foods | tojson }},
+                datasets: [{
+                    data: {{ values | tojson }},
+                    backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(206, 255, 12)','rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)','rgb(54, 25, 157)', 'rgb(79, 79, 255)',
+                    'rgb(101, 232, 188)', 'rgb(255, 187, 51)']
+                }] 
+            };
+
+            let pieChartDraw = function () {
+                let ctx = document.getElementById('pieChartCanvas').getContext('2d');
+                
+                window.pieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: pieChartData,
+                    options: {
+                        pieceLabel: {
+                        mode:"percentage",
+                        position:"default",
+                        },
+                        responsive: false,
+                        legend: {
+                        display: false
+                        },
+                        legendCallback: customLegend
+                    }
+                });
+            };
+
+            let customLegend = function (chart) {
+                let ul = document.createElement('ul');
+                let color = chart.data.datasets[0].backgroundColor;
+
+                chart.data.labels.forEach(function (label, index) {
+                    ul.innerHTML += `<li data-index="${index}"><span style="background-color: ${color[index]}"></span>${label}</li>`;
+                });
+
+                return ul.outerHTML;
+            };
+
+            let setLegendOnClick = function () {
+                let liList = document.querySelectorAll('#legend-div ul li');
+
+                for (let element of liList) {
+                    element.onclick = function () {
+                        updateChart(event, this.dataset.index, "pieChart");
+                        
+                        if (this.style.textDecoration.indexOf("line-through") < 0) {
+                            this.style.textDecoration = "line-through";
+                        } else {
+                            this.style.textDecoration = "";
+                        }
+                    }
+                }
+            };
+
+            let updateChart = function (e, datasetIndex, chartId) {
+            let index = datasetIndex;
+            let chart = e.view[chartId];
+            let i, ilen, meta;
+            
+            for (i = 0, ilen = (chart.data.datasets || []).length; i < ilen; ++i) {
+                meta = chart.getDatasetMeta(i);
+
+                if (meta.data[index]) {
+                    meta.data[index].hidden = !meta.data[index].hidden;
+                }
+            }
+
+            chart.update();
+            
+            };
+
+        </script>
+    </body>
+</html>

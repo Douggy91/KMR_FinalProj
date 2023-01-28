@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <!--DB 연동을 위한 오픈소스 및 css 오픈소스 링크-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous"></script>
+
+
+    <title>Login</title>
+    <link rel="stylesheet" href="index.css">
+    <meta charset="utf-8">
+    <title>움직임 동적 서비스(임시)</title>
+
+    <style>
+        table th {
+            font-weight: normal;
+            margin: auto;
+        }
+
+        table td {
+            border-bottom: solid 1px #000000;
+            margin: auto;
+        }
+
+        table>thead>tr>th,
+        table>tbody>tr>th,
+        table>tfoot>tr>th,
+        table>thead>tr>td,
+        table>tbody>tr>td,
+        table>tfoot>tr>td {
+            padding: 5px;
+        }
+
+        table thead tr th {
+            font-size: 12px;
+            color: #000000;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+            background: #b1b1b1;
+            text-align: left;
+        }
+        
+        body { background: #71a928; }
+        
+        
+        #container {
+            width: 401.9px;
+            height: 600px;
+            padding: 20px;
+            margin: auto;
+            text-align: center;
+        }
+        
+        #container form {
+            font-family: 'DungGeunMo';
+        }
+        
+        #container form .btn-primary {
+            background: #3d4c48;
+            border-color:#3d4c48;
+        }
+        
+        #container form .btn-primary:hover {
+            opacity: 0.9;
+        }
+        
+        
+        
+        @font-face {
+            font-family: 'DungGeunMo';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @media (max-width: 820px) {
+            #container {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <figure>
+            <img src="static/font.png" style="max-width:100%; height:auto;">
+            <img src="static/logo.png" style="max-width:100%; height:auto;">
+        </figure>
+        <form method="POST">
+            <p style="height: 50px"></p>
+            <!--아이디 영역-->
+            <div align="left">
+                <label for="exampleFormControlInput1" class="form-label">아이디</label>
+                <input name="username" type="text" class="form-control" id="exampleFormControlInput1" placeholder="아이디를 입력해주세요">
+            </div>
+
+            <!--패스워드 영역-->
+            <div align="left">
+                <label for="exampleFormControlInput1" class="form-label">비밀번호</label>
+                <input name="password" type="password" class="form-control" id="exampleFormControlInput1" placeholder="비밀번호를 입력하세요">
+            </div>
+            <p style="height: 50px"></p>
+            <button type="submit" class="btn btn-primary mb-3">로그인</button>
+            <button type="button" class="btn btn-primary mb-3" onclick="window.location.href='/signup'">회원가입</button>
+        </form>
+    </div>
+</body>
+
+</html>

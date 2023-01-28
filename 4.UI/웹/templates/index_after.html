@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous"></script>
+    <title>User Login Complete</title>
+    <link rel="stylesheet" href="ui.css">
+    <meta charset="utf-8">
+    <title>움직임 동적 서비스(임시)</title>
+
+    <style>
+        body {
+            background: #71a928;
+            
+        }
+
+        table th {
+            font-weight: normal;
+            margin: auto;
+        }
+
+        table td {
+            border-bottom: solid 1px #000000;
+            margin: auto;
+        }
+
+        table>thead>tr>th,
+        table>tbody>tr>th,
+        table>tfoot>tr>th,
+        table>thead>tr>td,
+        table>tbody>tr>td,
+        table>tfoot>tr>td {
+            padding: 5px;
+        }
+
+        table thead tr th {
+            font-size: 12px;
+            color: #000000;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+            background: #b1b1b1;
+            text-align: left;
+        }
+
+        #container {
+            width: 401.9px;
+            height: 600px;
+            padding: 20px;
+            margin: auto;
+            text-align: center;
+
+        }
+
+        #container .btn-primary {
+            background: #3d4c48;
+            border-color: #3d4c48;
+        }
+
+        #container .btn-primary:hover {
+            opacity: 0.9;
+        }
+        
+        #container button {
+            font-family: 'DungGeunMo';
+        }
+        
+        @font-face {
+            font-family: 'DungGeunMo';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @media (max-width: 820px) {
+            #container {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <figure>
+            <img src="static/font.png" style="max-width:100%; height:auto;">
+            <img src="static/chra.png" style="max-width:100%; height:auto;">
+        </figure>
+        <!-- 여백-->
+        <div style=height:50px>
+        </div>
+        <!-- 로그아웃 버튼 코드영역-->
+        <div style=height:70px>
+            <button class="btn btn-primary mb-3" onclick="window.location.href='/handmotion'">서비스 시작</button>
+        </div>
+
+        <!-- 서비스 버튼 코드영역-->
+        <div>
+            <button class="btn btn-primary mb-3" onclick="window.location.href='/index'">로그아웃</button>
+        </div>
+    </div>
+</body>
+
+</html>
