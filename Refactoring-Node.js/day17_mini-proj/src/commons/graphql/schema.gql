@@ -1,0 +1,191 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Customer {
+  customer_id: String!
+  customer_name: String!
+  passwd: String!
+  phone_num: String!
+  email: String!
+  address: String!
+  point: Int!
+}
+
+type DeleteOutput {
+  message: String!
+}
+
+type Store_Category {
+  storecategory_name: String!
+}
+
+type Franchise {
+  franchise_id: String!
+  franchise_name: String!
+}
+
+type Store {
+  store_id: String!
+  store_name: String!
+  passwd: String!
+  franchise_id: Franchise!
+  phone_num: String!
+  email: String!
+  address: String!
+  isRootStore: Boolean!
+}
+
+type Order {
+  order_id: String!
+  store_id: Store!
+  customer_id: Customer!
+  order_state: Boolean!
+}
+
+type Product_Category {
+  product_category_name: String!
+}
+
+type Product {
+  product_id: String!
+  product_name: String!
+  store_id: Store!
+  price: Int!
+  isState: Boolean!
+}
+
+type Order_Product {
+  no: Int!
+  order_id: Order!
+  product_id: Product!
+  order_cnt: Int!
+}
+
+type Query {
+  fetchCustomer(customerName: String!): Customer!
+  fetchCustomerAll: [Customer!]!
+  fetchOrders: Order!
+  fetchOrder(orderId: String!): Order!
+  fetchCategory(franchiseId: String!): Franchise!
+  fetchCategoryAll: Franchise!
+  fetchStore(storeId: String!): Store!
+  fetchStoreAll: Store!
+  fetchStorecategory(storecategoryId: String!): Store_Category!
+  fetchStorecategoryAll: Store_Category!
+  fetchProductCategory(categoryId: String!): Product_Category!
+  fetchProductCategoryAll: Product_Category!
+  fetchProduct(productId: String!): Product!
+  fetchProductAll: Product!
+  fetchOrderProduct(orderId: String!): Order_Product!
+  fetchOrderProductAll: Order_Product!
+}
+
+type Mutation {
+  createCustomer(createCustomerInput: CreateCustomerInput!): DeleteOutput!
+  updateCustomer(customerId: String!, updateCustomerInput: UpdateCustomerInput!): Customer!
+  deleteCustomer(customerId: String!): DeleteOutput!
+  createOrder(createOrderInput: CreateOrderInput!): Order!
+  modiOrder(orderId: String!, updateOrderInput: UpdateOrderInput!): Order!
+  deleteOrder(orderId: String!): DeleteOutput!
+  createFranchise(createfranchiseInput: CreateFranchiseInput!): Franchise!
+  modifyCategory(franchiseId: String!, updatefranchiseInput: UpdateFranchiseInput!): Franchise!
+  deleteCategory(franchiseId: String!): DeleteOutput!
+  createStore(createStoreInput: CreateStoreInput!): Store!
+  modifyStore(storeId: String!, updateStoreInput: UpdateStoreInput!): Store!
+  deleteStore(storeId: String!): DeleteOutput!
+  createStorecategory(storecategoryName: String!): Store_Category!
+  modifyStorecategory(storecategoryId: String!, storecategoryName: String!): Store_Category!
+  deleteStorecategory(storecategoryId: String!): DeleteOutput!
+  createProductCategory(categoryName: String!): Product_Category!
+  modifyProductCategory(categoryId: String!, categoryName: String!): Product_Category!
+  deleteProductCategory(categoryId: String!): DeleteOutput!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  modifyProduct(productId: String!, updateProductInput: UpdateProductInput!): Product!
+  deleteProduct(productId: String!): DeleteOutput!
+  createOrderProduct(createOrderProductInput: CreateOrderProductInput!): Order_Product!
+  modifyOrderProduct(orderId: String!, updateOrderProductInput: UpdateOrderProductInput!): Order_Product!
+  deleteOrderProduct(orderId: String!): Order_Product!
+}
+
+input CreateCustomerInput {
+  customer_name: String!
+  passwd: String!
+  phone_num: String!
+  email: String!
+  address: String!
+}
+
+input UpdateCustomerInput {
+  customer_name: String
+  passwd: String
+  phone_num: String
+  email: String
+  address: String
+}
+
+input CreateOrderInput {
+  customer_id: String!
+  store_id: String!
+}
+
+input UpdateOrderInput {
+  customer_id: String
+  store_id: String
+}
+
+input CreateFranchiseInput {
+  franchise_name: String!
+  storecategory_name: [String!]!
+}
+
+input UpdateFranchiseInput {
+  franchise_name: String
+  storecategory_name: [String!]
+}
+
+input CreateStoreInput {
+  store_name: String!
+  passwd: String!
+  franchise_id: String!
+  phone_num: String!
+  email: String!
+  address: String!
+  isRootStore: Boolean
+}
+
+input UpdateStoreInput {
+  store_name: String
+  passwd: String
+  franchise_id: String
+  phone_num: String
+  email: String
+  address: String
+  isRootStore: Boolean
+}
+
+input CreateProductInput {
+  product_name: String!
+  store_id: String!
+  product_category_id: [String!]!
+  price: Int!
+}
+
+input UpdateProductInput {
+  product_name: String
+  store_id: String
+  product_category_id: [String!]
+  price: Int
+}
+
+input CreateOrderProductInput {
+  order_id: String!
+  product_id: String!
+  order_cnt: Int!
+}
+
+input UpdateOrderProductInput {
+  order_id: String
+  product_id: String
+  order_cnt: Int
+}
